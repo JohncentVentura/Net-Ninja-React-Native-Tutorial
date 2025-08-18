@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 
 export default function App() {
@@ -22,24 +23,25 @@ export default function App() {
     { name: "Dehya", id: "9" },
   ]);
 
+  const pressHandler = (id) => {
+    console.log(id);
+    setPeople((prevPeople) => {
+      return prevPeople.filter((person) => person.id !== id);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
         keyExtractor={(item) => item.id} //Called first before numColumns, or else it'll cause an error
         numColumns={2}
         data={people}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
-      />
-
-      {/* <ScrollView>
-        {people.map((item) => {
-        return (
-          <View key={item.key}>
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => pressHandler(item.id)}>
             <Text style={styles.item}>{item.name}</Text>
-          </View>
-        );
-      })}
-      </ScrollView> */}
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }
