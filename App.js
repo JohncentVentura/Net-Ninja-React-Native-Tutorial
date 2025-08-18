@@ -74,16 +74,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0ff",
+    backgroundColor: "#ffffffff",
   },
   content: {
     flex: 1,
     padding: 40,
-    backgroundColor: "pink",
+    backgroundColor: "#edededff",
   },
   list: {
     flex: 1,
     marginTop: 20,
-    backgroundColor: "yellow"
+    backgroundColor: "yellow",
   },
 });
