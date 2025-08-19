@@ -10,30 +10,28 @@ export default function HomeStack() {
   //In Stack.Navigator, defaultNavigationOptions is deprecated, use screenOptions instead
   //Stack.Navigator screenOptions becomes the default values of the options of Stack.Screen components
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: "#eee" },
-          height: 60,
-          headerTintColor: "#444",
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#eee" },
+        height: 60,
+        headerTintColor: "#444",
+      }}
+    >
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: "GameZone",
         }}
-      >
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            title: "GameZone",
-          }}
-        />
-        <Stack.Screen
-          name="ReviewDetails"
-          component={ReviewDetails}
-          options={{
-            title: "Review Details",
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      />
+      <Stack.Screen
+        name="ReviewDetails"
+        component={ReviewDetails}
+        options={{
+          title: "Review Details",
+        }}
+      />
+    </Stack.Navigator>
   );
 }
 

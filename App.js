@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
 import Home from "./screens/home";
-import Navigator from "./routes/homeStack";
+import Navigator from "./routes/drawer";
 
 //Tutorial 17 Custom Fonts: Using AppLoading is deprecated, use SplashScreen instead
 import * as SplashScreen from "expo-splash-screen";
