@@ -4,16 +4,16 @@ import { globalStyles } from "../styles/global";
 
 //We got access from {navigation} props because this component is included
 //in a screen by createStackNavigator, which is coded in homeStack.js
-export default function ReviewDetails({ navigation }) {
-  const pressHandler = () => {
-    navigation.navigate("Home");
-    //navigation.push("Home");
-  };
+export default function ReviewDetails({ route, navigation }) {
+  //Tutorial 22: Passing Data Between Screens: navigation.getParam("title") is deprecated,
+  //params are accessed from the route prop (route.params), not navigation.getParam
+  const { title, body, rating } = route.params.item;
 
   return (
     <View style={globalStyles.container}>
-      <Text>Review Details Screen</Text>
-      <Button title="Back to Home Screen" onPress={pressHandler} />
+      <Text>{title}</Text>
+      <Text>{body}</Text>
+      <Text>{rating}</Text>
     </View>
   );
 }
