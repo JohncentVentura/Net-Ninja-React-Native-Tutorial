@@ -1,19 +1,46 @@
-import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { globalStyles } from "../styles/global";
 
 //We got access from {navigation} props because this component is included
 //in a screen by createStackNavigator, which is coded in homeStack.js
 export default function Home({ navigation }) {
-  const pressHandler = () => {
-    navigation.navigate("ReviewDetails");
-    //navigation.push("ReviewDetails");
-  };
+  const [reviews, setReviews] = useState([
+    {
+      title: "League of Legends",
+      rating: 5,
+      body: "Welcome to Summoners Rift",
+      key: "1",
+    },
+    { title: "Pokemon", rating: 4, body: "Gotta Catch Em All", key: "2" },
+    {
+      title: "Genshin Impact",
+      rating: 3,
+      body: "Song of the Welkins Moon",
+      key: "3",
+    },
+  ]);
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.titleText}>Home Screen</Text>
-      <Button title="Go to Review Details" onPress={pressHandler} />
+      {/*Tutorial 22: Passing Data Between Screens: params must be wrapped in an object {item}*/}
+      <FlatList
+        data={reviews}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ReviewDetails", { item })}
+          >
+            <Text style={globalStyles.titleText}>{item.title}</Text>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }
