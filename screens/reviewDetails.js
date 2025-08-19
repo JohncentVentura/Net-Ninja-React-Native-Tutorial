@@ -5,7 +5,7 @@ import { globalStyles } from "../styles/global";
 //We got access from {navigation} props because this component is included
 //in a screen by createStackNavigator, which is coded in homeStack.js
 export default function ReviewDetails({ route, navigation }) {
-  //Tutorial 22: Passing Data Between Screens: navigation.getParam("title") is deprecated,
+  //Tutorial 22 Passing Data Between Screens: navigation.getParam("title") is deprecated,
   //params are accessed from the route prop (route.params), not navigation.getParam
   const { title, body, rating } = route.params.item;
 

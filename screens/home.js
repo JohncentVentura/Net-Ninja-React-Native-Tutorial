@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
-      {/*Tutorial 22: Passing Data Between Screens: params must be wrapped in an object {item}*/}
+      {/*Tutorial 22 Passing Data Between Screens: params must be wrapped in an object {item}*/}
       <FlatList
         data={reviews}
         renderItem={({ item }) => (
