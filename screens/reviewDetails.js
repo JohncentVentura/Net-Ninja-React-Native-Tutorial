@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { globalStyles } from "../styles/global";
+import Card from "../shared/card";
 
 //We got access from {navigation} props because this component is included
 //in a screen by createStackNavigator, which is coded in homeStack.js
@@ -11,9 +12,11 @@ export default function ReviewDetails({ route, navigation }) {
 
   return (
     <View style={globalStyles.container}>
-      <Text>{title}</Text>
-      <Text>{body}</Text>
-      <Text>{rating}</Text>
+      <Card>
+        <Text>{title}</Text>
+        <Text>{body}</Text>
+        <Text>{rating}</Text>
+      </Card>
     </View>
   );
 }
