@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { globalStyles } from "../styles/global";
+
+//formik & yup works well together
 import { Formik } from "formik";
 import * as yup from "yup";
 
@@ -30,7 +32,10 @@ export default function ReviewForm({ addReview }) {
           addReview(values);
         }}
       >
-        {/*{(props)=>()}, where props comes from Formik*/}
+        {/*{(props)=>()}, where props comes from Formik,
+        props.errors shows errors of a field based on a validationSchema,
+        props.touched shows error if the field is touched and after pressing submit button
+        onBlur={props.handleBlur("...")} gets called when the field is blurred (untouched), triggering props.touched */}
         {(props) => (
           <View>
             <TextInput
@@ -38,21 +43,33 @@ export default function ReviewForm({ addReview }) {
               placeholder="Review Title"
               onChangeText={props.handleChange("title")}
               value={props.values.title}
+              onBlur={props.handleBlur("title")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.title && props.errors.title}
+            </Text>
             <TextInput
               multiline
               style={globalStyles.input}
               placeholder="Review Body"
               onChangeText={props.handleChange("body")}
               value={props.values.body}
+              onBlur={props.handleBlur("body")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.body && props.errors.body}
+            </Text>
             <TextInput
               style={globalStyles.input}
               placeholder="Rating (1-5)"
               onChangeText={props.handleChange("rating")}
               value={props.values.rating}
               keyboardType="numeric"
+              onBlur={props.handleBlur("rating")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.rating && props.errors.rating}
+            </Text>
             <Button
               title="submit"
               color="maroon"
