@@ -1,7 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { globalStyles } from "../styles/global";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import * as yup from "yup";
+
+//yup.object({...}) defines a schema object, inside the object we specify the rules
+const reviewSchema = yup.object({
+  title: yup.string().required().min(4),
+  body: yup.string().required().min(8),
+  rating: yup
+    .number()
+    .required()
+    .test("is-num-1-5", "Rating must be a number between 1 and 5", (val) => {
+      return parseInt(val) < 6 && parseInt(val) > 0;
+    }),
+});
 
 export default function ReviewForm({ addReview }) {
   return (
@@ -11,6 +24,7 @@ export default function ReviewForm({ addReview }) {
       Formik onSubmit={(actions)=>{}} where action contains methods to configure onSubmit={} */}
       <Formik
         initialValues={{ title: "", body: "", rating: "" }}
+        validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
           addReview(values);
