@@ -6,13 +6,16 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import Card from "../shared/card";
+import { MaterialIcons } from "@expo/vector-icons";
 
 //We got access from {navigation} props because this component is included
 //in a screen by createStackNavigator, which is coded in homeStack.js
 export default function Home({ navigation }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const [reviews, setReviews] = useState([
     {
       title: "League of Legends",
@@ -31,6 +34,27 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
+      <Modal visible={modalOpen} animationType="slide">
+        <View style={styles.modalContent}>
+          {/* style = {} takes an object, ...object takes all the key-value pairs 
+          from that object and spreads them into the new object*/}
+          <MaterialIcons
+            name="close"
+            size={24}
+            style={{ ...styles.modalToggle, ...styles.modalClose }}
+            onPress={() => setModalOpen(false)}
+          />
+          <Text>Hello from the modal:</Text>
+        </View>
+      </Modal>
+
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => setModalOpen(true)}
+      />
+
       {/*Tutorial 22 Passing Data Between Screens: params must be wrapped in an object {item}*/}
       <FlatList
         data={reviews}
@@ -47,3 +71,21 @@ export default function Home({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 20,
+    magrinBottom: 0,
+  },
+  modalContent: {
+    flex: 1,
+  },
+});
