@@ -51,6 +51,7 @@ export default function ReviewForm({ addReview }) {
             </Text>
             <TextInput
               multiline
+              minHeight={60}
               style={globalStyles.input}
               placeholder="Review Body"
               onChangeText={props.handleChange("body")}
@@ -71,10 +72,7 @@ export default function ReviewForm({ addReview }) {
             <Text style={globalStyles.errorText}>
               {props.touched.rating && props.errors.rating}
             </Text>
-            <FlatButton
-              text="submit"
-              onPress={props.handleSubmit}
-            />
+            <FlatButton text="submit" onPress={props.handleSubmit} />
           </View>
         )}
       </Formik>
