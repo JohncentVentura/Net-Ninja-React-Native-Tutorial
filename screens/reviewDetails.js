@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import { globalStyles } from "../styles/global";
+import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { globalStyles, images } from "../styles/global";
 import Card from "../shared/card";
 
 //We got access from {navigation} props because this component is included
@@ -15,8 +15,22 @@ export default function ReviewDetails({ route, navigation }) {
       <Card>
         <Text>{title}</Text>
         <Text>{body}</Text>
-        <Text>{rating}</Text>
+        <View style={styles.rating}>
+          <Text>GameZone Rating: {rating}</Text>
+          <Image source={images.ratings[rating]} />
+        </View>
       </Card>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  rating: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingTop: 16,
+    marginTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: "#eee",
+  },
+});
